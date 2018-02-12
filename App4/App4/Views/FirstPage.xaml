@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:XamarinProjectPOEC.Converters"
+             x:Class="XamarinProjectPOEC.Views.FirstPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DoubleToColorConverter x:Key="DoubleToColor"/>
+            <converters:DebugConverter x:Key="Debug"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.Content>
+        <StackLayout Margin="20,10">
+
+            <!--<Label x:Name="label"                   
+                   BindingContext="{x:Reference  Name=slider}"
+                   TextColor="{Bonding Path=Value, Converter={StaticResource DoubleToColor}}"
+                   FontSize="12"
+                   Text="{Binding, Path=Value, StringFormat='La valeur est {0}', Mode=OneWay, Converter={StaticResource Debug}}"
+                   HorizontalTextAlignment="Center"/>
+
+            <Slider x:Name="slider"
+                    Minimum="0.0"
+                    Maximum="10.0"
+                    Value="5.0"
+                    ValueChanged="Slider_ValueChanged"/>
+
+            <Stepper x:Name="stepper"/>-->
+
+        </StackLayout>
+    </ContentPage.Content>
+    
+</ContentPage>
