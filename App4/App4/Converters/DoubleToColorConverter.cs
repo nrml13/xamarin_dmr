@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace XamarinProjectPOEC.Converters
+namespace App4.Converters
 {
     public class DoubleToColorConverter : IValueConverter
     {
