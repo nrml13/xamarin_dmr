@@ -6,28 +6,32 @@ using System.Text;
 using Xamarin.Forms;
 using App4.Views;
 using System.Diagnostics;
-using App4.ViewModels;
 
 namespace App4
 {
-    public partial class App : Application
+    public partial class App_old : Application
     {
-
         public static String PageEnCours { get; set; }
         public static String ViewModelEnCours { get; set; }
 
-        public App()
+        public App_old()
         {
             InitializeComponent();
-            //On s'abonne aux différents message de mise a jour des état des pages
-            SubscribeToLoginPageViewModel();
+            MessagingCenter.Subscribe<String, String>(this, "ViewModelChanged", async (sender, viewModel) =>
+            {
+                App.Current.Properties["ViewModelChanged"] = viewModel;
+                await App.Current.SavePropertiesAsync();
+            });
         }
 
         protected override void OnStart()
         {
+            // Handle when your app starts
+            //Debugger.Break();
+
             if (Application.Current.Properties.ContainsKey("DateSupsension"))
             {
-                if (Application.Current.Properties.ContainsKey("PageEnCours"))
+                if (Application.Current.Properties.ContainsKey("ViewModelEnCours"))
                 {
                     /////PAS TOUCHÉOU !!!
                     ////Demarage après destruction de l'appli
@@ -38,40 +42,35 @@ namespace App4
                     ////3 : création de la page (pour l'afficher) 
                     //MainPage = (Page)(Activator.CreateInstance(typeDeLaDernierePage));
 
-                    MainPage = (Page)(Activator.CreateInstance(Type.GetType(Application.Current.Properties["PageEnCours"].ToString())));
+
+                    MainPage = (Page)(Activator.CreateInstance(Type.GetType(Application.Current.Properties["ViewModelEnCours"].ToString())));
+
                 }
             }
             else
             {
                 //Demarage normal
-                MainPage = new NavigationPage(new LoginPage());
+                MainPage = new LoginPage();
             }
         }
 
         protected async override void OnSleep()
         {
-            //Sauvegarde de la date de suspension
+            // Handle when your app sleeps
             Application.Current.Properties["DateSupsension"] = DateTime.Now;
-            //Sauvegarde du type de la page en cours
-            Application.Current.Properties["PageEnCours"] = PageEnCours;
+            Application.Current.Properties["ViewModelEnCours"] = PageEnCours;
             await Application.Current.SavePropertiesAsync();
+
+            //Debugger.Break();
         }
 
         protected async override void OnResume()
         {
-            //On supprimme la date de suspension
+            // Handle when your app resumes
             Application.Current.Properties.Remove("DateSuspension");
             await Application.Current.SavePropertiesAsync();
-        }
 
-        //Abonnement pour permettre de sauvegarder l'état d'une viewModel dans les propriétés locales
-        private void SubscribeToLoginPageViewModel()
-        {
-            MessagingCenter.Subscribe<String, String>(this, LoginPageViewModel.ViewModelKey, async (sender, viewModel) =>
-            {
-                App.Current.Properties[LoginPageViewModel.ViewModelKey] = viewModel;
-                await App.Current.SavePropertiesAsync();
-            });
+            //Debugger.Break();
         }
     }
 }

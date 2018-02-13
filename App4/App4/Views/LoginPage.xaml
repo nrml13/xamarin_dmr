@@ -11,12 +11,15 @@
             Text="{Binding Password}"
             Placeholder="Password"
             IsPassword="True"/>
+        <Switch
+            IsToggled="{Binding RememberMe}"/>
         <Button 
             Text="Log me" 
             Command="{Binding LoginCommand}"/>
         <Button 
             Text="Forgot my password" 
-            Command="{Binding ForgotPassCommand}"/>
+            Command="{Binding ForgotPassCommand}"
+            Clicked="Button_Clicked"/>
     </StackLayout>
     
 </ContentPage>
