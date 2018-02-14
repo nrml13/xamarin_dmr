@@ -45,6 +45,7 @@ namespace App4.Views
 
         }
 
+        //Prise en charge du click sur le Bouton "forgot my password", renvoit sur la page eponyme
         private void Button_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new ForgotPassword());

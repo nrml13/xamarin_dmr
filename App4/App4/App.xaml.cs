@@ -38,7 +38,7 @@ namespace App4
                     ////3 : création de la page (pour l'afficher) 
                     //MainPage = (Page)(Activator.CreateInstance(typeDeLaDernierePage));
 
-                    MainPage = (Page)(Activator.CreateInstance(Type.GetType(Application.Current.Properties["PageEnCours"].ToString())));
+                    MainPage = new NavigationPage((Page)(Activator.CreateInstance(Type.GetType(Application.Current.Properties["PageEnCours"].ToString()))));
                 }
             }
             else

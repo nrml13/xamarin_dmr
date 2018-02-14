@@ -45,20 +45,22 @@ namespace App4.ViewModels
             }
         }
 
-        public Boolean RememberMe { get; set; }
-            //get { return RememberMe; }
-            //set
-            //{
-            //    if (value)
-            //    {
-            //        NotifyChange();
-            //    }
-            //    else
-            //    {
-            //        DeletePageHistory();
-            //    }
-            //}
-        //}
+        private Boolean _RememberMe;
+        public Boolean RememberMe
+        {
+            get { return _RememberMe; }
+            set {
+                RaisePropertyChanged(ref _RememberMe, value);
+                if (!value)
+                {
+                    DeletePageHistory();
+                }
+                else
+                {
+                    NotifyChange();
+                }
+            }
+        }
 
 
         /// COMMANDS
@@ -107,13 +109,13 @@ namespace App4.ViewModels
             MessagingCenter.Send("", LoginPageViewModel.ViewModelKey, ViewModelSerialized);
         }
 
-        //async private void DeletePageHistory()
-        //{
-        //    if (App.Current.Properties.ContainsKey(LoginPageViewModel.ViewModelKey))
-        //    {
-        //        App.Current.Properties.Remove(LoginPageViewModel.ViewModelKey);
-        //        await App.Current.SavePropertiesAsync();
-        //    }
-        //}
+        async private void DeletePageHistory()
+        {
+            if (App.Current.Properties.ContainsKey(LoginPageViewModel.ViewModelKey))
+            {
+                App.Current.Properties.Remove(LoginPageViewModel.ViewModelKey);
+                await App.Current.SavePropertiesAsync();
+            }
+        }
     }
 }

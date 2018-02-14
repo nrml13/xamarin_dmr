@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:App4.ViewModels"
+             x:Class="App4.Views.Page2">
+
+    <ContentPage.BindingContext>
+        <viewmodels:Page2ViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Button
+                Text="Button"
+                Clicked="Button_Clicked"/>
+            <Label
+                Text="{Binding Version}"/>
+            <Label
+                Text="{Binding Model}"/>
+        </StackLayout>
+       
+    </ContentPage.Content>
+</ContentPage>

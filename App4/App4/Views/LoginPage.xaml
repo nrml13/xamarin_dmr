@@ -3,7 +3,82 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="App4.Views.LoginPage">
 
-    <StackLayout>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition
+                Height="10"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="Auto"/>
+            <RowDefinition
+                Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="Auto"/>
+            <ColumnDefinition
+                Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <BoxView
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Color="Green"/>
+        <Label 
+            Grid.Row="1"
+            Grid.Column="0"
+            Text="USER" />
+        <Entry
+            Grid.Row="1"
+            Grid.Column="1"
+            Placeholder="Username"
+            Text="{Binding Username}"/>
+        <Label 
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="PASSWORD" />
+        <Entry
+            Grid.Row="2"
+            Grid.Column="1"
+            Placeholder="Password"
+            Text="{Binding Password}"
+            IsPassword="True"/>
+        <Label
+            Grid.Row="3"
+            Grid.Column="0"
+            Text="Remember me"/>
+        <Switch
+            Grid.Row="3"
+            Grid.Column="1"
+            IsToggled="{Binding RememberMe}"/>
+        <Button 
+            Grid.Row="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Text="Log me" 
+            Command="{Binding LoginCommand}"/>
+        <Button 
+            Grid.Row="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Text="Forgot my password" 
+            Command="{Binding ForgotPassCommand}"
+            Clicked="Button_Clicked"/>
+    </Grid>
+    
+    <!--VERSION N°1-->
+    <!--<StackLayout>
         <Entry 
             Text="{Binding Username}"
             Placeholder="Username"/>
@@ -11,8 +86,14 @@
             Text="{Binding Password}"
             Placeholder="Password"
             IsPassword="True"/>
-        <Switch
-            IsToggled="{Binding RememberMe}"/>
+        <StackLayout
+            Orientation="Horizontal"
+            HorizontalOptions="FillAndExpand">
+            <Label
+                Text="Remember me : "/>
+            <Switch
+                IsToggled="{Binding RememberMe}"/>
+        </StackLayout>
         <Button 
             Text="Log me" 
             Command="{Binding LoginCommand}"/>
@@ -20,6 +101,6 @@
             Text="Forgot my password" 
             Command="{Binding ForgotPassCommand}"
             Clicked="Button_Clicked"/>
-    </StackLayout>
+    </StackLayout>-->
     
 </ContentPage>

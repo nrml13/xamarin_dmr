@@ -10,16 +10,16 @@ using Xamarin.Forms.Xaml;
 namespace App4.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ForgotPassword : ContentPage
+    public partial class Page2 : ContentPage
     {
-        public ForgotPassword()
+        public Page2()
         {
             InitializeComponent();
         }
 
         private void Button_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushModalAsync(new Page2());
+
         }
     }
 }
