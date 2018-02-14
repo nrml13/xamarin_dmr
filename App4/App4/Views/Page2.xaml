@@ -8,7 +8,76 @@
         <viewmodels:Page2ViewModel/>
     </ContentPage.BindingContext>
 
+
+
     <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="Auto"/>
+                <RowDefinition
+                    Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Grid.Row="0"
+                VerticalOptions="Center"
+                Text="Button"
+                Clicked="Button_Clicked"/>
+            <Label
+                Grid.Column="0"
+                Grid.Row="1"
+                Text="{Binding Version}"/>
+            <Label
+                Grid.Column="0"
+                Grid.Row="2"
+                Text="{Binding Model}"/>
+            <ListView
+                Grid.Column="0"
+                Grid.Row="3"
+                ItemsSource="{Binding ListeUsers}"
+                HasUnevenRows="True"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshCommand="{Binding RefreshCommand}">
+                <!--3 ligne au dessus : PARTIE POUR LE REFRESH-->
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <!--VERSION NON OPTIMISER PAR XAMARIN-->
+                        <ViewCell>
+                            <StackLayout>
+                                <Label 
+                                    Text="{Binding NomUtilisateur}"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    TextColor="Maroon"/>
+                                <Label 
+                                    Text="{Binding Age}"
+                                    FontAttributes="Bold"
+                                    FontSize="20"
+                                    TextColor="Gray"/>
+                            </StackLayout>
+                        </ViewCell>
+                        <!--VERSION OPTIMISER PAR XAMARIN (EVITE LES SACCADES, PRESQUE AU NATIF)--> 
+                        <!--<TextCell 
+                            Text="{Binding NomUtilisateur}"
+                            TextColor="Maroon"
+                            Detail="{Binding DateDeNaissance}"/>-->
+
+                    </DataTemplate> 
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+    </ContentPage.Content>
+    
+    <!--VERSION N°1-->
+    <!--<ContentPage.Content>
         <StackLayout>
             <Button
                 Text="Button"
@@ -19,5 +88,5 @@
                 Text="{Binding Model}"/>
         </StackLayout>
        
-    </ContentPage.Content>
+    </ContentPage.Content>-->
 </ContentPage>
